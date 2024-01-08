@@ -9,8 +9,9 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "Feeder")
+@Setter
 public class feeder {
-
+   @Setter
   @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE) // Use a UUID generator
   private String FID;

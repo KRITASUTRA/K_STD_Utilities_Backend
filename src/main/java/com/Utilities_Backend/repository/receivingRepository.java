@@ -11,5 +11,5 @@ import com.Utilities_Backend.entity.receivingStation;
 
 @Repository
 public interface  receivingRepository extends JpaRepository <receivingStation, UUID>{
-    //Optional<receivingStation> findById(UUID RSId);
+    Optional<receivingStation> findById(UUID RSId);
 }

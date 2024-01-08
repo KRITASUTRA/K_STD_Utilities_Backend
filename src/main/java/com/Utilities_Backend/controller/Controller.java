@@ -26,7 +26,7 @@ public class Controller {
 	private feederRepository feederRepo;
 
 	@PostMapping("/rstdata")
-	public ResponseEntity<?> saveUserRequest(@RequestBody receivingStation receiveST) {
+	public ResponseEntity<?> saveReceivingStation(@RequestBody receivingStation receiveST) {
 		try {
 //			String RSID = receivingRepository.getRSID();
 			String stationName = receiveST.getStationName();
@@ -37,12 +37,7 @@ public class Controller {
 
 			boolean status = receiveST.isStatus();
 
-
-
-
-
-
-			// Create a new UserRequest entity
+// Create a new UserRequest entity
 			receivingStation newRST = new receivingStation();
 //			newRST.setFirstName(RSID);
 			newRST.setStationName(stationName);
@@ -65,53 +60,50 @@ public class Controller {
 
 
 
-//	@PostMapping("/feeder")
-//	public ResponseEntity<?> saveFeeder(@RequestBody feeder Fd) {
-//		try {
-////            ObjectMapper objectMapper = new ObjectMapper();
-////            String json = objectMapper.writeValueAsString(consumer);
-////            System.out.println("Received request in saveLinkConsumer method. Request Body: " + json);
-//
-//			String FeederName = Fd.getFeederName();
-//			String Reason = Fd.getReason();
-//			String LastUpdate = Fd.getLastUpdate();
-//			String OffTime= Fd.getOffTime();
-//			String OnTime = Fd.getOnTime();
-//			UUID RSId = Fd.getReceivingStation().getRSId();
-//
-//			Optional<receivingStation> optionalreceivingStation = receivingRepository.findById(RSId);
-//			if (optionalreceivingStation.isPresent()) {
-//				receivingStation receivingStation = optionalreceivingStation.get();
-//
-//				feeder newFeeder = new feeder();
-//				newFeeder.setFeederName(FeederName);
-//				newFeeder.setReason(Reason);
-//				newFeeder.setLastUpdate(LastUpdate);
-//				newFeeder.setOffTime(OffTime);
-//				newFeeder.setOnTime(OnTime);
-//				newFeeder.setReceivingStation(receivingStation);
-//
-//				feeder savedFeeder = feederRepo.save(newFeeder);
-//
-//				return ResponseEntity.ok().body(savedFeeder);
-//			} else {
-//				return ResponseEntity.status(404).body("User not found with userId: " + userId);
-//			}
-//		} catch (Exception e) {
-//			if (isUniqueConstraintViolation(e)) {
-//				return ResponseEntity.status(409).body("Resource already exists. Please check your input.");
-//			} else {
-//				e.printStackTrace();
-//				return ResponseEntity.status(500).body("Internal Server Error");
-//			}
-//		}
-//	}
-//	private boolean isUniqueConstraintViolation(Exception e) {
-//		// Check if the exception is due to a unique constraint violation
-//		return e instanceof org.springframework.dao.DataIntegrityViolationException;
-//	}
+	@PostMapping("/feeder")
+	public ResponseEntity<?> saveFeeder(@RequestBody feeder Fd) {
+		try {
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            String json = objectMapper.writeValueAsString(consumer);
+//            System.out.println("Received request in saveLinkConsumer method. Request Body: " + json);
+
+			String FeederName = Fd.getFeederName();
+			String Reason = Fd.getReason();
+			String LastUpdate = Fd.getLastUpdate();
+			String OffTime= Fd.getOffTime();
+			String OnTime = Fd.getOnTime();
+			UUID RSId = Fd.getReceivingStation().getRSId();
+
+			Optional<receivingStation> optionalreceivingStation = receiveRepository.findById(RSId);
+			if (optionalreceivingStation.isPresent()) {
+				receivingStation receivingStation = optionalreceivingStation.get();
+
+				feeder newFeeder = new feeder();
+				newFeeder.setFeederName(FeederName);
+				newFeeder.setReason(Reason);
+				newFeeder.setLastUpdate(LastUpdate);
+				newFeeder.setOffTime(OffTime);
+				newFeeder.setOnTime(OnTime);
+				newFeeder.setReceivingStation(receivingStation);
+
+				feeder savedFeeder = feederRepo.save(newFeeder);
+
+				return ResponseEntity.ok().body(savedFeeder);
+			} else {
+				return ResponseEntity.status(404).body("User not found with userId: " + RSId);
+			}
+		} catch (Exception e) {
+			
+				e.printStackTrace();
+				return ResponseEntity.status(500).body("Internal Server Error");
+		}
+	}
+	//private boolean isUniqueConstraintViolation(Exception e) {
+		// Check if the exception is due to a unique constraint violation
+	//	return e instanceof org.springframework.dao.DataIntegrityViolationException;
+	//}
 
 
 
-	 
+	  
 }
