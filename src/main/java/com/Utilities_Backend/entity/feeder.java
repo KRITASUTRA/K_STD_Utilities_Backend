@@ -11,11 +11,16 @@ import lombok.Setter;
 @Table(name = "Feeder")
 @Setter
 public class feeder {
-   @Setter
-  @Id
-   @GeneratedValue(strategy = GenerationType.SEQUENCE) // Use a UUID generator
-  private String FID;
-
+//   @Setter
+//  @Id
+//  @GeneratedValue(strategy = GenerationType.AUTO)
+//   @Column(name = "feeder_id", nullable = false, unique = true)
+//  private long FID;
+   
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long Fid;
+   
     @Getter
     @Setter
     private String feederName;

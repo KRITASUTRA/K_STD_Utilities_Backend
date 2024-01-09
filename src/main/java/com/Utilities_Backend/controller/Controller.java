@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Utilities_Backend.repository.receivingRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -63,9 +64,9 @@ public class Controller {
 	@PostMapping("/feeder")
 	public ResponseEntity<?> saveFeeder(@RequestBody feeder Fd) {
 		try {
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            String json = objectMapper.writeValueAsString(consumer);
-//            System.out.println("Received request in saveLinkConsumer method. Request Body: " + json);
+           ObjectMapper objectMapper = new ObjectMapper();
+         String json = objectMapper.writeValueAsString(Fd);
+         System.out.println("Received request in saveLinkConsumer method. Request Body: " + json);
 
 			String FeederName = Fd.getFeederName();
 			String Reason = Fd.getReason();
@@ -76,7 +77,7 @@ public class Controller {
 
 			Optional<receivingStation> optionalreceivingStation = receiveRepository.findById(RSId);
 			if (optionalreceivingStation.isPresent()) {
-				receivingStation receivingStation = optionalreceivingStation.get();
+				receivingStation ReceivingStation = optionalreceivingStation.get();
 
 				feeder newFeeder = new feeder();
 				newFeeder.setFeederName(FeederName);
@@ -84,7 +85,7 @@ public class Controller {
 				newFeeder.setLastUpdate(LastUpdate);
 				newFeeder.setOffTime(OffTime);
 				newFeeder.setOnTime(OnTime);
-				newFeeder.setReceivingStation(receivingStation);
+				newFeeder.setReceivingStation(ReceivingStation);
 
 				feeder savedFeeder = feederRepo.save(newFeeder);
 
