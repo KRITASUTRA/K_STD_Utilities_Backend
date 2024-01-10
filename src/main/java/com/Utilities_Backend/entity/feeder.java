@@ -9,18 +9,12 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "Feeder")
-@Setter
 public class feeder {
-//   @Setter
-//  @Id
-//  @GeneratedValue(strategy = GenerationType.AUTO)
-//   @Column(name = "feeder_id", nullable = false, unique = true)
-//  private long FID;
-   
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Fid;
-   
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "feeder_sequence")
+    @SequenceGenerator(name = "feeder_sequence", sequenceName = "YOUR_SEQUENCE_NAME", allocationSize = 1)
+	    private Long FID;
     @Getter
     @Setter
     private String feederName;
