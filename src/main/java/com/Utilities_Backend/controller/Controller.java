@@ -3,6 +3,8 @@ package com.Utilities_Backend.controller;
 import com.Utilities_Backend.entity.feeder;
 import com.Utilities_Backend.entity.receivingStation;
 import com.Utilities_Backend.repository.feederRepository;
+import com.Utilities_Backend.repository.pumpEnergyRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,11 +27,13 @@ public class Controller {
 
 	@Autowired
 	private feederRepository feederRepo;
-
+	
+	@Autowired
+	private pumpEnergyRepository pumpEnergyRepo;
+//===========================================ReceivingStation==========================================================
 	@PostMapping("/rstdata")
 	public ResponseEntity<?> saveReceivingStation(@RequestBody receivingStation receiveST) {
 		try {
-//			String RSID = receivingRepository.getRSID();
 			String stationName = receiveST.getStationName();
 			String reason = receiveST.getReason();
 			String lastUpdate = receiveST.getLastUpdate();
@@ -40,7 +44,6 @@ public class Controller {
 
 // Create a new UserRequest entity
 			receivingStation newRST = new receivingStation();
-//			newRST.setFirstName(RSID);
 			newRST.setStationName(stationName);
 			newRST.setReason(reason);
 			newRST.setLastUpdate(lastUpdate);
@@ -61,6 +64,7 @@ public class Controller {
 
 
 
+	//===========================================Feeder=================================================================
 	@PostMapping("/feeder")
 	public ResponseEntity<?> saveFeeder(@RequestBody feeder Fd) {
 		try {
@@ -105,7 +109,7 @@ public class Controller {
 	//	return e instanceof org.springframework.dao.DataIntegrityViolationException;
 	//}
 
-
-
-	  
 }
+
+
+

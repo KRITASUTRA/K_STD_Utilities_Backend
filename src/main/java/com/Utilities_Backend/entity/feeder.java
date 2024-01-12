@@ -1,7 +1,7 @@
 package com.Utilities_Backend.entity;
 
-import java.util.Date;
-import java.util.UUID;
+//import java.util.Date;
+//import java.util.UUID;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -52,7 +52,7 @@ private receivingStation receivingStation;
 //        createDate = new Date();
 //    }
 
-
+ 
 
 }
 
