@@ -1,6 +1,7 @@
 package com.Utilities_Backend.controller;
 
 import com.Utilities_Backend.entity.feeder;
+import com.Utilities_Backend.entity.pumpEnergy;
 import com.Utilities_Backend.entity.receivingStation;
 import com.Utilities_Backend.repository.feederRepository;
 import com.Utilities_Backend.repository.pumpEnergyRepository;
@@ -109,7 +110,34 @@ public class Controller {
 	//	return e instanceof org.springframework.dao.DataIntegrityViolationException;
 	//}
 
+
+
+
+@PostMapping("/pumpEnergy")
+public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
+	try {
+		String RST = energy.getRST();
+		String subDivision = energy.getSubDivision();
+		String feeder = energy.getFeeder();
+		String KW = energy.getKW();
+
+
+//Create a new UserRequest entity
+		pumpEnergy newEnergy = new pumpEnergy();
+		newEnergy.setRST(RST);
+		newEnergy.setSubDivision(subDivision);
+		newEnergy.setFeeder(feeder);
+		newEnergy.setKW(KW);
+
+
+		// Save the UserRequest to the database
+		pumpEnergy saved = pumpEnergyRepo.save(newEnergy);
+		return ResponseEntity.ok().body(saved);
+	} catch (Exception e) {
+		e.printStackTrace();
+		// Handle exceptions
+		return ResponseEntity.status(500).body("Internal Server Error");
+	}
 }
-
-
+}
 
