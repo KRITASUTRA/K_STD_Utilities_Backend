@@ -122,7 +122,7 @@ public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 		String subDivision = energy.getSubDivision();
 		String feeder = energy.getFeeder();
 		String KW = energy.getKW();
-	//String energyDateString = energy.getEnergyDate();
+	String energyDateString = energy.getEnergyDateString();
 
 //Create a new UserRequest entity
 		pumpEnergy newEnergy = new pumpEnergy();
@@ -131,7 +131,7 @@ public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 		newEnergy.setFeeder(feeder);
 		newEnergy.setKW(KW);
 		//newEnergy.setEnergy_date(new Date());
-		//energy.setEnergyDateString(energyDateString);
+		newEnergy.setEnergyDateString(energyDateString);
 
 		// Save the UserRequest to the database
 		pumpEnergy saved = pumpEnergyRepo.save(newEnergy);

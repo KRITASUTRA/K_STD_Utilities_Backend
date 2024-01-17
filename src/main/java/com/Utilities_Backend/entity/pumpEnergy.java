@@ -38,15 +38,20 @@ public class pumpEnergy {
     @Temporal(TemporalType.TIMESTAMP)
     private Date energyDate;
 
-//    public void setEnergyDateString(String energyDateString) {
-//        // Assuming energyDateString is in a format that can be parsed
-//        // Adjust the parsing logic based on the actual format
-//        try {
-//            this.energy_date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(energyDateString);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//            // Handle the parsing exception as needed
-//        }
-//    }
-//
+    public void setEnergyDateString(String energyDateString) {
+        // Assuming energyDateString is in a format that can be parsed
+        // Adjust the parsing logic based on the actual format
+        try {
+            this.energyDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(energyDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            // Handle the parsing exception as needed
+        }
+    }
+    
+    public String getEnergyDateString() {
+        // Assuming energy_date should be returned in a specific format (e.g., ISO 8601)
+        return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(this.energyDate);
+    }
+
 }
