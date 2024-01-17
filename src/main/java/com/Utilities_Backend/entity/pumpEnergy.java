@@ -1,59 +1,9 @@
-//package com.Utilities_Backend.entity;
-//
-//import java.util.Date;
-//
-//import jakarta.persistence.Column;
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.GeneratedValue;
-//import jakarta.persistence.GenerationType;
-//import jakarta.persistence.Id;
-//import jakarta.persistence.PrePersist;
-//import jakarta.persistence.Table;
-//import jakarta.persistence.Temporal;
-//import jakarta.persistence.TemporalType;
-//import lombok.Getter;
-//import lombok.Setter;
-//
-//@Entity
-//@Table(name = "PumpEnergy")
-//public class pumpEnergy {
-//    @Setter
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
-//
-//    @Getter
-//    @Setter
-//    private String RST;
-//    @Getter
-//    @Setter
-//    private String subDivision;
-//    @Getter
-//    @Setter
-//    private String Feeder;
-//    @Getter
-//    @Setter
-//    private String KW;
-//
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(name = "date", nullable = false, updatable = false)
-//    private Date date;
-//
-//    public void setCreateDate(Date date) {
-//        this.date = date;
-//    }
-//
-//    @PrePersist
-//    protected void onCreate() {
-//        if (date == null) {
-//            date = new Date();
-//        }
-//    }
-//}
 
 
 package com.Utilities_Backend.entity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 //import java.util.Date;
 //import java.util.UUID;
@@ -83,8 +33,20 @@ public class pumpEnergy {
     @Setter
     private String KW;
     
+    @Setter
     @Getter
     @Temporal(TemporalType.TIMESTAMP)
-    private Date energy_date;
+    private Date energyDate;
 
+//    public void setEnergyDateString(String energyDateString) {
+//        // Assuming energyDateString is in a format that can be parsed
+//        // Adjust the parsing logic based on the actual format
+//        try {
+//            this.energy_date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(energyDateString);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//            // Handle the parsing exception as needed
+//        }
+//    }
+//
 }

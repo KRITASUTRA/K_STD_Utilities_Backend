@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Utilities_Backend.repository.receivingRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -120,7 +122,7 @@ public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 		String subDivision = energy.getSubDivision();
 		String feeder = energy.getFeeder();
 		String KW = energy.getKW();
-
+	//String energyDateString = energy.getEnergyDate();
 
 //Create a new UserRequest entity
 		pumpEnergy newEnergy = new pumpEnergy();
@@ -128,7 +130,8 @@ public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 		newEnergy.setSubDivision(subDivision);
 		newEnergy.setFeeder(feeder);
 		newEnergy.setKW(KW);
-
+		//newEnergy.setEnergy_date(new Date());
+		//energy.setEnergyDateString(energyDateString);
 
 		// Save the UserRequest to the database
 		pumpEnergy saved = pumpEnergyRepo.save(newEnergy);
