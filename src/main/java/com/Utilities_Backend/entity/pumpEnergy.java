@@ -31,6 +31,9 @@ public class pumpEnergy {
     private String feeder;
     @Getter
     @Setter
+    private String TotalSupply;
+    @Getter
+    @Setter
     private String KW;
     
     @Setter

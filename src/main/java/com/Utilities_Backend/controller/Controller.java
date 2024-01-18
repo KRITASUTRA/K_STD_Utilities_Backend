@@ -71,7 +71,7 @@ public class Controller {
 	@PostMapping("/feeder")
 	public ResponseEntity<?> saveFeeder(@RequestBody feeder Fd) {
 		try {
-        //   ObjectMapper objectMapper = new ObjectMapper();
+		//   ObjectMapper objectMapper = new ObjectMapper();
        //  String json = objectMapper.writeValueAsString(Fd);
        //  System.out.println("Received request in saveLinkConsumer method. Request Body: " + json);
 
@@ -121,6 +121,7 @@ public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 		String RST = energy.getRST();
 		String subDivision = energy.getSubDivision();
 		String feeder = energy.getFeeder();
+		String Total_supply = energy.getTotalSupply();
 		String KW = energy.getKW();
 	String energyDateString = energy.getEnergyDateString();
 
@@ -129,8 +130,9 @@ public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 		newEnergy.setRST(RST);
 		newEnergy.setSubDivision(subDivision);
 		newEnergy.setFeeder(feeder);
+		newEnergy.setTotalSupply(Total_supply);
 		newEnergy.setKW(KW);
-		//newEnergy.setEnergy_date(new Date());
+//		newEnergy.setEnergy_date(new Date());
 		newEnergy.setEnergyDateString(energyDateString);
 
 		// Save the UserRequest to the database
@@ -143,4 +145,7 @@ public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 	}
 }
 }
+
+
+
 

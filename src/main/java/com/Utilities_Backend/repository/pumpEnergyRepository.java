@@ -21,4 +21,5 @@ import com.Utilities_Backend.entity.pumpEnergy;
 @Repository
 public interface pumpEnergyRepository extends JpaRepository<pumpEnergy, UUID> {
 
+
 }
