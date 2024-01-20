@@ -1,5 +1,6 @@
 package com.Utilities_Backend.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -43,6 +44,21 @@ public class receivingStation {
 		private boolean status;
 	
 
+    public void updateOnOffTime() {
+        if (status) {
+            // If status is true, update onTime
+            onTime = getCurrentTime();
+        } else {
+            // If status is false, update offTime
+            offTime = getCurrentTime();
+        }
+    }
+    
+    private String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date now = new Date();
+        return dateFormat.format(now);
+    }
 
 
 //		@Column(name = "user_id", updatable = false, nullable = false)

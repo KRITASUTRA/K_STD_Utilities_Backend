@@ -44,6 +44,7 @@ public class Controller {
 			String onTime = receiveST.getOnTime();
 
 			boolean status = receiveST.isStatus();
+			receiveST.updateOnOffTime();
 
 // Create a new UserRequest entity
 			receivingStation newRST = new receivingStation();
@@ -56,7 +57,7 @@ public class Controller {
 			newRST.setRSId(UUID.randomUUID());
 
 			// Save the UserRequest to the database
-			receivingStation savedUserRequest = receiveRepository.save(newRST);
+			receivingStation savedUserRequest = receiveRepository.save(receiveST);
 			return ResponseEntity.ok().body(savedUserRequest);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,9 +72,9 @@ public class Controller {
 	@PostMapping("/feeder")
 	public ResponseEntity<?> saveFeeder(@RequestBody feeder Fd) {
 		try {
-		//   ObjectMapper objectMapper = new ObjectMapper();
-       //  String json = objectMapper.writeValueAsString(Fd);
-       //  System.out.println("Received request in saveLinkConsumer method. Request Body: " + json);
+//		   ObjectMapper objectMapper = new ObjectMapper();
+//         String json = objectMapper.writeValueAsString(Fd);
+//         System.out.println("Received request in saveLinkConsumer method. Request Body: " + json);
 
 			String FeederName = Fd.getFeederName();
 			String Reason = Fd.getReason();
@@ -81,6 +82,7 @@ public class Controller {
 			String OffTime= Fd.getOffTime();
 			String OnTime = Fd.getOnTime();
 			UUID RSId = Fd.getReceivingStation().getRSId();
+			boolean status = Fd.isStatus();
 
 			Optional<receivingStation> optionalreceivingStation = receiveRepository.findById(RSId);
 			if (optionalreceivingStation.isPresent()) {
@@ -93,7 +95,8 @@ public class Controller {
 				newFeeder.setOffTime(OffTime);
 				newFeeder.setOnTime(OnTime);
 				newFeeder.setReceivingStation(ReceivingStation);
-				
+				newFeeder.setStatus(status);
+				newFeeder.updateFeederStatus();
 
 				feeder savedFeeder = feederRepo.save(newFeeder);
 
