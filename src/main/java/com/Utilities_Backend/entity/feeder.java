@@ -45,7 +45,7 @@ public class feeder {
 private receivingStation receivingStation;
 
 public void updateFeederStatus() {
-    if (receivingStation != null && !receivingStation.isStatus()) {
+    if (receivingStation != null && !receivingStation.getStatus()) {
         // If the associated receivingStation status is false, feeder should not work
         this.status = false;
         this.offTime = null;
