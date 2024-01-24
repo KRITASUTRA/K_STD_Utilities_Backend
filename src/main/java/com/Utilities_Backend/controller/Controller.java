@@ -138,12 +138,12 @@ public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 		// Save the UserRequest to the database
 		pumpEnergy saved = pumpEnergyRepo.save(newEnergy);
 		return ResponseEntity.ok().body(saved);
-	} catch (Exception e) {
+	}catch (Exception e) {
 		e.printStackTrace();
 		// Handle exceptions
 		return ResponseEntity.status(500).body("Internal Server Error");
 	}
-}
+	}
 }
 
 
