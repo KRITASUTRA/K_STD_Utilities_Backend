@@ -6,9 +6,10 @@ import com.Utilities_Backend.entity.receivingStation;
 import com.Utilities_Backend.repository.feederRepository;
 import com.Utilities_Backend.repository.pumpEnergyRepository;
 
-import org.hibernate.mapping.List;
+//import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,12 +22,14 @@ import com.Utilities_Backend.repository.receivingRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
-
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api")
 public class Controller {
@@ -73,18 +76,24 @@ public class Controller {
 	
 	
 //    // Read all ReceivingStations
-//    @GetMapping("/view_rstdata")
-//    public ResponseEntity<?> getAllReceivingStations() {
-//        try {
-//            // Retrieve all ReceivingStations from the database
-//            List allRSTs = (List) receiveRepository.findAll();
-//            return ResponseEntity.ok().body(allRSTs);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            // Handle exceptions
-//            return ResponseEntity.status(500).body("Internal Server Error");
-//        }
-//    }
+	@GetMapping("/view_rstdata")
+	public ResponseEntity<?> getAllReceivingStations() {
+	    try {
+	        // Retrieve all ReceivingStations from the database
+	    	List<receivingStation> allRSTs = receiveRepository.findAll();
+
+
+	        return ResponseEntity.ok().body(allRSTs);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        // Handle exceptions
+	        return ResponseEntity.status(500).body("Internal Server Error");
+	    }
+	}
+
+
+
+
 //
 //    // Read a specific ReceivingStation by RSID
 //    @GetMapping("/rstdata/{rsid}")
