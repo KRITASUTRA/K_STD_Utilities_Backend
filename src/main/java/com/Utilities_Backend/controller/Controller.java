@@ -10,6 +10,7 @@ import com.Utilities_Backend.repository.pumpEnergyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -151,7 +152,7 @@ public class Controller {
 //        }
 //    }
 
-
+// ============================================ update =====================================
 	@PutMapping("/rstdata/{rsid}")
 	public ResponseEntity<?> updateReceivingStation(@PathVariable UUID rsid, @RequestBody receivingStation receiveST) {
 	    try {
@@ -251,7 +252,7 @@ public class Controller {
 
 
 
-
+//========================================PUMP ENERGY=================================================================
 @PostMapping("/pumpEnergy")
 public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 	try {
@@ -281,8 +282,25 @@ public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 		return ResponseEntity.status(500).body("Internal Server Error");
 	}
 }
+
+
+
+//// Read all ReceivingStations
+@GetMapping("/view_pumpEnergy")
+public ResponseEntity<?> getAllpumpEnergy() {
+  try {
+      // Retrieve all ReceivingStations from the database
+  	List<pumpEnergy> allPumpEnergy = pumpEnergyRepo.findAll();
+
+
+      return ResponseEntity.ok().body(allPumpEnergy);
+  } catch (Exception e) {
+      e.printStackTrace();
+      // Handle exceptions
+      return ResponseEntity.status(500).body("Internal Server Error");
+  }
 }
 
-
+}
 
 
