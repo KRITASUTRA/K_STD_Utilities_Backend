@@ -45,7 +45,7 @@ public class pumpEnergy {
         // Assuming energyDateString is in a format that can be parsed
         // Adjust the parsing logic based on the actual format
         try {
-            this.energyDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(energyDateString);
+            this.energyDate = new SimpleDateFormat("yyyy-MM-dd").parse(energyDateString);
         } catch (ParseException e) {
             e.printStackTrace();
             // Handle the parsing exception as needed
@@ -54,7 +54,7 @@ public class pumpEnergy {
     
     public String getEnergyDateString() {
         // Assuming energy_date should be returned in a specific format (e.g., ISO 8601)
-        return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(this.energyDate);
+        return new SimpleDateFormat("yyyy-MM-dd").format(this.energyDate);
     }
 
 }
