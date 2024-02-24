@@ -11,13 +11,23 @@
 	<groupId>com.Utilities_Backend</groupId>
 	<artifactId>K_STD_Utilities_Backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging> <!-- Change to "jar" -->
 	<name>K_STD_Utilities_Backend</name>
-	<description>Utilities Backend </description>
+	<description>Utilities Backend</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
 	</properties>
+
 	<dependencies>
+
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>6.4.1.Final</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>

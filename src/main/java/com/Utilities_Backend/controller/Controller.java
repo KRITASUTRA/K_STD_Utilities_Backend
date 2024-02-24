@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Utilities_Backend.repository.receivingRepository;
+import com.Utilities_Backend.repository.stdMasterRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.text.SimpleDateFormat;
@@ -38,6 +39,9 @@ public class Controller {
 	
 	@Autowired
 	private pumpEnergyRepository pumpEnergyRepo;
+	
+	@Autowired
+	private stdMasterRepository stdMasterRepo;
 //===========================================ReceivingStation==========================================================
 	@PostMapping("/rstdata")
 	public ResponseEntity<?> saveReceivingStation(@RequestBody receivingStation receiveST) {
