@@ -6,8 +6,9 @@ import com.Utilities_Backend.entity.receivingStation;
 import com.Utilities_Backend.repository.feederRepository;
 import com.Utilities_Backend.repository.pumpEnergyRepository;
 
-import org.hibernate.mapping.List;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -255,7 +256,7 @@ public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 		String feeder = energy.getFeeder();
 		String Total_supply = energy.getTotalSupply();
 		String KW = energy.getKW();
-	String energyDateString = energy.getEnergyDateString();
+	String energyDate = energy.getEnergyDate();
 
 //Create a new UserRequest entity
 		pumpEnergy newEnergy = new pumpEnergy();
@@ -265,7 +266,7 @@ public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 		newEnergy.setTotalSupply(Total_supply);
 		newEnergy.setKW(KW);
 //		newEnergy.setEnergy_date(new Date());
-		newEnergy.setEnergyDateString(energyDateString);
+		newEnergy.setEnergyDate(energyDate);
 
 		// Save the UserRequest to the database
 		pumpEnergy saved = pumpEnergyRepo.save(newEnergy);
@@ -276,6 +277,27 @@ public ResponseEntity<?> savePumpEnergy(@RequestBody pumpEnergy energy) {
 		return ResponseEntity.status(500).body("Internal Server Error");
 	}
 }
+
+@GetMapping("/getAllPumpEnergy")
+public ResponseEntity<?> getAllPumpEnergy() {
+    try {
+        List<pumpEnergy> allEnergy = pumpEnergyRepo.findAll();
+        
+        if (!allEnergy.isEmpty()) {
+            return ResponseEntity.ok().body(allEnergy);
+        } else {
+            return ResponseEntity.status(404).body("No pump energy data found");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        // Handle exceptions
+        return ResponseEntity.status(500).body("Internal Server Error");
+    }
+}
+
+
+
+
 }
 
 
