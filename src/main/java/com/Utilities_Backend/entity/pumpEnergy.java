@@ -71,7 +71,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "pumpenergy")
-public class pumpEnergy {
+public class  pumpEnergy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "feeder_sequence")
